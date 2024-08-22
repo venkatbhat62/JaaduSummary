@@ -28,7 +28,8 @@ Environment:
     ##   can be an IP address, FQDN or localhost if executing the script on a host where influxdb is running. 
     InfluxdbURL: "http://localhost:8086"
     ## token - get this from influxdb configuration, this is used to connect to Influxdb to exerice client APIs.
-    InfluxdbToken: hpM15Uxu3i490KO-sXNarv1Eluar3al-lFkbmRS4Jx3Q6iPSBJTm9ak-V3AjrSy8S2M80YdKY0_gu59yUDOzdQ==
+    # InfluxdbToken: hpM15Uxu3i490KO-sXNarv1Eluar3al-lFkbmRS4Jx3Q6iPSBJTm9ak-V3AjrSy8S2M80YdKY0_gu59yUDOzdQ==
+    InfluxdbToken: <yourToken>
     ## organization - get this from influxdb configuration
     ##  this version supports operations within a single org. 
     ##  if there is enough interest, can support operations acorss multiple org in future version.
