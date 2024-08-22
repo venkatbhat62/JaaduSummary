@@ -4,7 +4,7 @@ This tool automates the summarization of current or real time values in influxdb
 clones the dashboard(s) that refer to the current bucket name in influxdb with corresponding summary bucket name(s). 
 If the current dashboard refers to the libary panel(s) that refer to the current bucket name(s), it will create summary library panel(s) referring to the summary bucket name(s).
 By running this tool on a daily basis via crontab, one can automate the summarization of data on a Hourly, Daily or Weekly basis with Min, Mean, and Max values for each summarization type. 
-The bucket creation and summarization can be done for desired bucket names with Include or Exclude regex specs. Cloning of grafana dashboards can be also be controlled via IncludeDashboards and ExcludeDashboard specs. JaaduSummary (https://docs.google.com/presentation/d/1ctKggZIkIrCY3Jl3BA_R63WU1RKhsJsGuB-LKLi_FkM/view) depicts the association pictorially.
+The bucket creation and summarization can be done for a desired bucket names with Include or Exclude regex specs. Cloning of grafana dashboards can be also be controlled via IncludeDashboards and ExcludeDashboard specs. JaaduSummary (https://docs.google.com/presentation/d/1ctKggZIkIrCY3Jl3BA_R63WU1RKhsJsGuB-LKLi_FkM/view) depicts the association of current buckets to the summary buckets, summary panels within the summary dashboards referring to summary buckets pictorially.<b>Use this tool reduces the labor involved in creating/managing summary buckets, and summary dashboards showing long term trends, while also reducing the storage capacity</b>
 
 <h2>Features</h2> 
 <h3></h3>Version 1.00</h3>
