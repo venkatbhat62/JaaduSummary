@@ -10,17 +10,20 @@ Environment:
   # specify hostname in regular expression 
   Dev:
     HostName: ((...)(d)(...)([0-9][0-9]))|(LAPTOP-QOCNVF0T|havembha|penguin)
-    GrafanaAPIKey: <yourAPIKey>
+    ## uncomment below line and add your API key
+    # GrafanaAPIKey: <yourAPIKey>
   Test:
     ### both test and and dev environments use same API key 
     HostName: (...)(t)(...)([0-9][0-9])
-    GrafanaAPIKey: <yourAPIKey>
+    ## uncomment below line and add your API key
+    # GrafanaAPIKey: <yourAPIKey>
   UAT:
     HostName: (...)(u)(...)([0-9][0-9])
     GrafanaAPIKey: 'TBD'
   Prod:
     HostName: (...)(p)(...)([0-9][0-9])
-    GrafanaAPIKey: 'TBD'
+    ## uncomment below line and add your API key
+    # GrafanaAPIKey: 'TBD'
 
   All:
     ### influxdb related specs
