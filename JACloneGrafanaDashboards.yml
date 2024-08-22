@@ -1,5 +1,5 @@
 # Default config file used by JACloneGrafanaDashboards.py
-# Author: havembha@gmail.com, 2024-07-24
+# Author: havembha@gmail.com, 2024-08-22
 #
 ### specify this including path name, .YYYYMMDD will appended to this name to create per day file
 LogFileName: JACloneGrafanaDashboards.log
