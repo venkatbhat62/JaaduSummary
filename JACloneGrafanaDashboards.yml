@@ -1,0 +1,94 @@
+# Default config file used by JACloneGrafanaDashboards.py
+# Author: havembha@gmail.com, 2024-07-24
+#
+### specify this including path name, .YYYYMMDD will appended to this name to create per day file
+LogFileName: JACloneGrafanaDashboards.log
+### environment specific definitions for the server where grafana is running
+### any confiugration parameter can be specidied for each environment separately
+### if no specification under hostname specific environment, spec under 'All' environment will be used.
+Environment:
+  # specify hostname in regular expression 
+  Dev:
+    HostName: ((...)(d)(...)([0-9][0-9]))|(LAPTOP-QOCNVF0T|havembha|penguin)
+    GrafanaAPIKey: 'glsa_soCAMVl2G6egHYrDU6AuQcvRv1hjJhpH_556b9cc1'
+  Test:
+    ### both test and and dev environments use same API key 
+    HostName: (...)(t)(...)([0-9][0-9])
+    GrafanaAPIKey: 'glsa_soCAMVl2G6egHYrDU6AuQcvRv1hjJhpH_556b9cc1'
+  UAT:
+    HostName: (...)(u)(...)([0-9][0-9])
+    GrafanaAPIKey: 'TBD'
+  Prod:
+    HostName: (...)(p)(...)([0-9][0-9])
+    GrafanaAPIKey: 'TBD'
+
+  All:
+    ### influxdb related specs
+    ## influxdb URL to connect to execute continuous queries, to create summary buckets
+    ##   can be an IP address, FQDN or localhost if executing the script on a host where influxdb is running. 
+    InfluxdbURL: "http://localhost:8086"
+    ## token - get this from influxdb configuration, this is used to connect to Influxdb to exerice client APIs.
+    InfluxdbToken: hpM15Uxu3i490KO-sXNarv1Eluar3al-lFkbmRS4Jx3Q6iPSBJTm9ak-V3AjrSy8S2M80YdKY0_gu59yUDOzdQ==
+    ## organization - get this from influxdb configuration
+    ##  this version supports operations within a single org. 
+    ##  if there is enough interest, can support operations acorss multiple org in future version.
+    InfluxdbOrg: havembha
+    ## if True, summary buckets will be created and tasks will be added to summarize the data based on 'SummaryGroups' spec
+    ##    False, buckets will not be operated on. Grafana panels will be created based on SummaryGroups and SummaryValueType definitions
+    ##           it is assumed that the user created the buckets with expected naming conventions.
+    InfluxdbManageSummaryBuckets: True
+    ## include bucket names below while creating summary buckets
+    ## all - all buckets will be included, default
+    ## regex expression - include the bucket name that matches to the regex
+    ## IncludeBuckets: all
+    IncludeBuckets: test
+    ## exclude bucket names below while creating summary buckets
+    ## None - nothing will be excluded, default
+    ## regex expression - exclude the bucket name that matches to the regex
+    ## ExcludeBuckets: None
+    ExcludeBuckets: test2
+    ##
+    ### grafana dashboard related specs
+    ## grafana URL to connect to exercise HTTP API. This can be HTTP or HTTPS.
+    ##  can be an IP address, FQDN or localhost if executing the script on a host where influxdb is running. 
+    GrafanaAPIURL: "https://localhost:6443/api/"
+    ### Below two specs (SummaryGroups and SummaryValueTypes) will be combined to form influxdb bucket name for summary data.
+    ##  SummaryGroups - supported values: ['Hourly', 'Daily', 'Weekly'] 
+    ##  SummaryValueTypes - supported values: [ 'Min', 'Max', 'Mean'] 
+    ## These needs to match the influxdb bucket names for summary bucket types.
+    ##  Below spec results in bucket names: 
+    ##   *HourlyMin, *HourlyMax, *HourlyMean
+    ##   *DailyMin,  *DailyMax,  *DailyMean
+    SummaryGroups: ['Hourly', 'Daily']
+    SummaryValueTypes: [ 'Min', 'Max', 'Mean']
+    ### default '[time']['from'] for the summary dashboard based on summary group
+    ## format: [ key1: value1, key2: value2, key3: value3,...]
+    ## key like Daily, Hourly, Weekly needs to match the group word used in SummaryGroups
+    ## value string specifies the from time spec to be used in dashboard range selection. 
+    SummaryDashboardTimeFrom: {"Hourly": "now-3d", "Daily": "now-30d", "Weekly": "now-180d"}
+    ### influxdb bucket retention duration in days for SummaryGroups
+    ## 90 days for 'Hourly', one year for 'Daily' and 3 years for 'Weekly' summary buckets
+    InfluxdbBucketRetentionRules: {"Hourly": 90, "Daily": 365, "Weekly": 1095}
+    ## debugLevel 0 - no debug, 1 to 4, 4 being max details
+    DebugLevel: 1
+    ### limit the dashboard creation or update to below number
+    ##   can use this during the initial stage to experiment with automatic summarization 
+    ## if not defined or set to 0, no limit will be applied.
+    MaxSummaryDashboards: 0 
+    ### regular expression definition of dashboard title to include in 
+    ###   creating or update of summary dashboards
+    ###   can use this to limit the summary dashboard creation or update of the dashboards with 
+    ###     desired name pattern 
+    ### default - all - to include all dashboards 
+    IncludeDashboards: all 
+    # IncludeDashboards: home network 
+    # IncludeDashboards: dashboard with no library panel|dashboard with single library panel
+    # IncludeDashboards: dashboard with single library panel
+    ###
+    ### regular expression definition of dashboard title to exclude from 
+    ###   creating or update of summary dashboards
+    ###   can use this to skip the summary dashboard creation or update of the dashboards with 
+    ###     desired name pattern 
+    ### default - none, for no exclusion 
+    ###  
+    ExcludeDashboards: none
