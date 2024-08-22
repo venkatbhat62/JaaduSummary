@@ -10,12 +10,10 @@ Environment:
   # specify hostname in regular expression 
   Dev:
     HostName: ((...)(d)(...)([0-9][0-9]))|(LAPTOP-QOCNVF0T|havembha|penguin)
-    # GrafanaAPIKey: 'glsa_soCAMVl2G6egHYrDU6AuQcvRv1hjJhpH_556b9cc1'
     GrafanaAPIKey: <yourAPIKey>
   Test:
     ### both test and and dev environments use same API key 
     HostName: (...)(t)(...)([0-9][0-9])
-    # GrafanaAPIKey: 'glsa_soCAMVl2G6egHYrDU6AuQcvRv1hjJhpH_556b9cc1'
     GrafanaAPIKey: <yourAPIKey>
   UAT:
     HostName: (...)(u)(...)([0-9][0-9])
