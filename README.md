@@ -20,6 +20,6 @@ JaaduSummary (https://docs.google.com/presentation/d/1ctKggZIkIrCY3Jl3BA_R63WU1R
 <li>Summarized data for each group can have Min, Mean, and Max values within the summarization interval. This enables one to visualize separate dashboards for each value type.
 <li>Creates log file at current working directory on a per day basis. 
 
-<h2>Installation</h2>h2>
+<h2>Installation</h2>
 <li>Copy the config file and the script to the folder on target host and add a crontab to run it on a daily basis.
 <li>There is NO log file purge mechanism available yet. Suggest adding another crontab to delete log file older than disired window.
